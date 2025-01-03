@@ -21,3 +21,20 @@ cd lm-evaluation-harness-en
 pip install -e .
 pip install lm-eval[vllm]
 ```
+
+## 実装の検証
+`llm-jp/llm-jp-3-13b`モデルを使用して、オリジナルの実装とvLLM実装で同等の結果が得られることを確認しています。
+
+### 英語タスクでの比較
+
+| タスク名 | パラメータ | オリジナル実装 | vLLM実装 |
+|---------|-----------|--------------|----------|
+| TriviaQA | num_fewshot=4 | 0.6020 | 0.6043 |
+| GSM8K | num_fewshot=4 | 0.1577 | 0.1668 |
+| OpenBookQA | num_fewshot=4 | 0.3320 | 0.3240 |
+| HellaSWAG | num_fewshot=4 | 0.5701 | 0.5684 |
+| XWinograd | num_fewshot=4 | 0.9011 | 0.9062 |
+| MMLU (平均) | num_fewshot=5 | 0.4625 | 0.4597 |
+| BBH (CoT) | num_fewshot=3 | 0.4022 | 0.4052 |
+
+※ SQuADv2タスクについては、現在再現性の確保のため調査中です。
