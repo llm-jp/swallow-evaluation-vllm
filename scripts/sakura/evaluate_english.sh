@@ -1,6 +1,6 @@
 #!/bin/bash
 #SBATCH --job-name=0107
-#SBATCH --partition=gpu-debug
+#SBATCH --partition=gpu
 #SBATCH --nodes=1
 #SBATCH --gpus-per-node=8
 #SBATCH --ntasks-per-node=8
@@ -50,6 +50,7 @@ lm_eval --model vllm \
     --write_out \
     --output_path "../$MMLU_OUTDIR" \
     --use_cache "../$MMLU_OUTDIR" \
+    --log_samples \
     --seed 42
 
 lm_eval --model vllm \
