@@ -54,16 +54,13 @@ def find_all_result_files(directory: str, model: str) -> List[Tuple[str, datetim
 
     result_files = []
     parent_dir = os.path.dirname(directory)
-
-    if os.path.exists(parent_dir):
-        for d in os.listdir(parent_dir):
-            if any(variant in d for variant in model_variants):
-                result_dir = os.path.join(parent_dir, d)
-                for f in os.listdir(result_dir):
-                    if f.startswith("results_") and f.endswith(".json"):
-                        file_path = os.path.join(result_dir, f)
-                        mod_time = datetime.fromtimestamp(os.path.getmtime(file_path))
-                        result_files.append((file_path, mod_time))
+    for root, dirs, files in os.walk(parent_dir):
+        for f in files:
+            if f.startswith("results_") and f.endswith(".json"):
+                file_path = os.path.join(root, f)
+                print("file_path", file_path)
+                mod_time = datetime.fromtimestamp(os.path.getmtime(file_path))
+                result_files.append((file_path, mod_time))
 
     if not result_files:
         raise FileNotFoundError(
@@ -117,7 +114,11 @@ def aggregate_results(model: str) -> Dict[str, float]:
 
     results = {}
     overall = []
-    result_root_dir = os.path.join(os.getcwd(), "results", model)
+    model_path = Path(model)
+    if model_path.is_absolute():
+        model_path = Path(*model_path.parts[1:])
+
+    result_root_dir = Path.cwd() / "results" / model_path
 
     for _, row in column_path_key_csv.iterrows():
         column, path, _, max_score = row
