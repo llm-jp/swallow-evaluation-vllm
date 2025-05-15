@@ -22,7 +22,15 @@ pip install -e .
 pip install lm-eval[vllm]
 ```
 
+### 評価結果算出
+
+```bash
+python scripts/aggregate_result.py --model <checkpoint path>
+python scripts/show_result.py --model-list <model_list path>   # 1 行 1 モデル名を並べたテキスト
+```
+
 ## 実装の検証
+
 `llm-jp/llm-jp-3-13b`モデルを使用して、オリジナルの実装とvLLM実装で同等の結果が得られることを確認しています。
 
 ### 英語タスクでの比較
@@ -36,5 +44,3 @@ pip install lm-eval[vllm]
 | XWinograd | num_fewshot=4 | 0.9011 | 0.9062 |
 | MMLU (平均) | num_fewshot=5 | 0.4625 | 0.4597 |
 | BBH (CoT) | num_fewshot=3 | 0.4022 | 0.4052 |
-
-※ SQuADv2タスクについては、現在再現性の確保のため調査中です。

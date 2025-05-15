@@ -1,8 +1,8 @@
 #!/bin/bash
 #PBS -P gcg51557
-#PBS -q R10415
+#PBS -q R9920251000
 #PBS -N 0134
-#PBS -v RTYPE=rt_HF
+#PBS -v RTYPE=rt_HG
 #PBS -l select=1:ngpus=1
 #PBS -l walltime=168:00:00
 #PBS -j oe
@@ -16,7 +16,7 @@ cd $PBS_O_WORKDIR
 set -eu -o pipefail
 export NUMEXPR_MAX_THREADS=64
 
-export CUDA_VISIBLE_DEVICES=0
+export CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7
 source .venv_harness_en/bin/activate
 
 # This script is used to evaluate

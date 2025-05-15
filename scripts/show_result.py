@@ -46,7 +46,7 @@ def show_result(args):
     root_dir = os.getcwd()
     search_dir = os.path.join(root_dir, "results")
     result_paths = [
-        os.path.join(search_dir, model, "aggregated_result.json")
+        os.path.join(search_dir, model.lstrip("/"), "aggregated_result.json")
         for model in model_list
     ]
 
