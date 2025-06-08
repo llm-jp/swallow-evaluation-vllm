@@ -39,4 +39,5 @@ lm_eval --model vllm \
     --log_samples \
     --seed 42
 
+cd ..
 python scripts/aggregate_result.py --model $MODEL_NAME_PATH
