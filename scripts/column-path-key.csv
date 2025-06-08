@@ -38,3 +38,4 @@ bbh_cot_fewshot_word_sorting,en/harness_en/alltasks_3shot_allcases/bbh_cot/resul
 arc_challenge_25shot,en/harness_en/alltasks_25shot/arc/results.json,"results.arc_challenge.acc,none",1
 arc_easy_25shot,en/harness_en/alltasks_25shot/arc/results.json,"results.arc_easy.acc,none",1
 piqa_10shot,en/harness_en/alltasks_10shot/PIQA/results.json,"results.piqa.acc,none",1
+gsm_plus,en/harness_en/alltasks_5shot_gsm_pluscases/gsm8k/results.json,"results.gsm_plus.exact_match,strict-match",1
