@@ -39,3 +39,8 @@ arc_challenge_25shot,en/harness_en/alltasks_25shot/arc/results.json,"results.arc
 arc_easy_25shot,en/harness_en/alltasks_25shot/arc/results.json,"results.arc_easy.acc,none",1
 piqa_10shot,en/harness_en/alltasks_10shot/PIQA/results.json,"results.piqa.acc,none",1
 gsm_plus,en/harness_en/alltasks_5shot_gsm_pluscases/gsm8k/results.json,"results.gsm_plus.exact_match,strict-match",1
+gsm8k_8shot,en/harness_en/alltasks_8shot/gsm8k/results.json,"results.gsm8k.exact_match,strict-match",1
+gsm8k_0shot,en/harness_en/alltasks_0shot/gsm8k/results.json,"results.gsm8k.exact_match,strict-match",1
+gsm8k_8shot_cot,en/harness_en/alltasks_8shot/gsm8k/results.json,"results.gsm8k_cot.exact_match,strict-match",1
+gsm8k_cot_zeroshot,en/harness_en/alltasks_gsm8k_cot_zeroshot/gsm8k/results.json,"results.gsm8k_cot_zeroshot.exact_match,strict-match",1
+gsm8k_4shot_cot,en/harness_en/alltasks_4shot/gsm8k/results.json,"results.gsm8k_cot.exact_match,strict-match",1

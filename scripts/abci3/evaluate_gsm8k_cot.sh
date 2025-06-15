@@ -18,8 +18,36 @@ cd $PBS_O_WORKDIR
 export CUDA_VISIBLE_DEVICES=0,1,2,3
 source .venv_harness_en/bin/activate
 
-GSM8K_TASK_NAME="gsm8k_cot,gsm8k"
-GSM8K_NUM_FEWSHOT=8
+for GSM8K_NUM_FEWSHOT in 8 0; do
+    if [ "$GSM8K_NUM_FEWSHOT" = 8 ]; then
+        GSM8K_TASK_NAME="gsm8k_cot,gsm8k"
+    elif [ "$GSM8K_NUM_FEWSHOT" = 0 ]; then
+        GSM8K_TASK_NAME="gsm8k"
+    fi
+    GSM8K_OUTDIR="results/${MODEL_NAME_PATH}/en/harness_en/alltasks_${GSM8K_NUM_FEWSHOT}shot/gsm8k"
+
+    mkdir -p $GSM8K_OUTDIR
+
+    cd lm-evaluation-harness-en
+
+    lm_eval --model vllm \
+        --model_args pretrained=$MODEL_NAME_PATH,tensor_parallel_size=$TP,dtype=auto,gpu_memory_utilization=0.7,data_parallel_size=$DP \
+        --tasks $GSM8K_TASK_NAME \
+        --num_fewshot $GSM8K_NUM_FEWSHOT \
+        --batch_size auto \
+        --device cuda \
+        --write_out \
+        --output_path "../$GSM8K_OUTDIR" \
+        --use_cache "../$GSM8K_OUTDIR" \
+        --log_samples \
+        --seed 42
+
+    cd ..
+done
+
+# 4shot: gsm8k_cot のみを実行
+GSM8K_NUM_FEWSHOT=4
+GSM8K_TASK_NAME="gsm8k_cot"
 GSM8K_OUTDIR="results/${MODEL_NAME_PATH}/en/harness_en/alltasks_${GSM8K_NUM_FEWSHOT}shot/gsm8k"
 
 mkdir -p $GSM8K_OUTDIR
@@ -39,4 +67,5 @@ lm_eval --model vllm \
     --seed 42
 
 cd ..
+
 python scripts/aggregate_result.py --model $MODEL_NAME_PATH

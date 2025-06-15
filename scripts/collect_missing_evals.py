@@ -49,6 +49,21 @@ TASK_GROUPS = {
         ],
         "script": "scripts/abci3/evaluate_piqa_10shot.sh",
     },
+    "evaluate_gsm8k_cot": {
+        "columns": [
+            "gsm8k_8shot",
+            "gsm8k_0shot",
+            "gsm8k_8shot_cot",
+            "gsm8k_4shot_cot",
+        ],
+        "script": "scripts/abci3/evaluate_gsm8k_cot.sh",
+    },
+    "gsm8k_cot_zeroshot": {
+        "columns": [
+            "gsm8k_cot_zeroshot",
+        ],
+        "script": "scripts/abci3/evaluate_gsm8k_cot_0shot.sh",
+    },
 }
 
 
