@@ -22,7 +22,7 @@ def _show_results(args, result_paths, tasks):
     for result_path in result_paths:
         with open(result_path, "r") as f:
             result_json = json.load(f)
-        model = result_json["model"]
+        model = result_json["model"].replace("//", "/")
         results = result_json["result"]
 
         # 小数第digit位まで表示
